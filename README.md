@@ -3,6 +3,10 @@
 [![Gitter](https://img.shields.io/gitter/room/badges/shields.svg?style=flat-square&color=blue)](https://gitter.im/Microsoft/mssql-developers)
 [![Build status](https://sqlclientdrivers.visualstudio.com/public/_apis/build/status/ADO/CI-SqlClient)](https://sqlclientdrivers.visualstudio.com/public/_build/latest?definitionId=1139)
 
+# WITHOUT PRE LOGIN HANDSHAKE
+
+Some times you can't avoid it... Then you need connecto to a really old SQL Server...
+
 # Microsoft SqlClient Data Provider for SQL Server
 
 Welcome to the home of the Microsoft ADO.NET driver for SQL Server aka the Microsoft.Data.SqlClient GitHub repository.
