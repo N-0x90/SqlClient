@@ -503,7 +503,7 @@ namespace Microsoft.Data.SqlClient
             bool marsCapable = false;
 
             _connHandler.TimeoutErrorInternal.EndPhase(SqlConnectionTimeoutErrorPhase.InitializeConnection);
-            _connHandler.TimeoutErrorInternal.SetAndBeginPhase(SqlConnectionTimeoutErrorPhase.SendPreLoginHandshake);
+            //_connHandler.TimeoutErrorInternal.SetAndBeginPhase(SqlConnectionTimeoutErrorPhase.SendPreLoginHandshake);
 
             uint result = _physicalStateObj.SniGetConnectionId(ref _connHandler._clientConnectionId);
             Debug.Assert(result == TdsEnums.SNI_SUCCESS, "Unexpected failure state upon calling SniGetConnectionId");
@@ -526,22 +526,23 @@ namespace Microsoft.Data.SqlClient
                 _encryptionOption = EncryptionOptions.NOT_SUP;
             }
 
-            SqlClientEventSource.Log.TryTraceEvent("<sc.TdsParser.Connect|SEC> Sending prelogin handshake");
-            SendPreLoginHandshake(instanceName, encrypt, integratedSecurity, serverCertificateFilename);
+            //SqlClientEventSource.Log.TryTraceEvent("<sc.TdsParser.Connect|SEC> Sending prelogin handshake");
+            //SendPreLoginHandshake(instanceName, encrypt, integratedSecurity, serverCertificateFilename);
 
-            _connHandler.TimeoutErrorInternal.EndPhase(SqlConnectionTimeoutErrorPhase.SendPreLoginHandshake);
+            //_connHandler.TimeoutErrorInternal.EndPhase(SqlConnectionTimeoutErrorPhase.SendPreLoginHandshake);
             _connHandler.TimeoutErrorInternal.SetAndBeginPhase(SqlConnectionTimeoutErrorPhase.ConsumePreLoginHandshake);
 
             _physicalStateObj.SniContext = SniContext.Snix_PreLogin;
-            SqlClientEventSource.Log.TryTraceEvent("<sc.TdsParser.Connect|SEC> Consuming prelogin handshake");
-            PreLoginHandshakeStatus status = ConsumePreLoginHandshake(
-                encrypt,
-                trustServerCert,
-                integratedSecurity,
-                out marsCapable,
-                out _connHandler._fedAuthRequired,
-                isTlsFirst,
-                serverCertificateFilename);
+            //SqlClientEventSource.Log.TryTraceEvent("<sc.TdsParser.Connect|SEC> Consuming prelogin handshake");
+            //PreLoginHandshakeStatus status = ConsumePreLoginHandshake(
+            //    encrypt,
+            //    trustServerCert,
+            //    integratedSecurity,
+            //    out marsCapable,
+            //    out _connHandler._fedAuthRequired,
+            //    isTlsFirst,
+            //    serverCertificateFilename);
+            PreLoginHandshakeStatus status = PreLoginHandshakeStatus.Successful;
 
             if (status == PreLoginHandshakeStatus.InstanceFailure)
             {
